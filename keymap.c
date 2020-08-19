@@ -13,6 +13,8 @@ extern keymap_config_t keymap_config;
 #define TEXT_RIGHT RALT(KC_RIGHT)
 #define LOCK_MAC LCTL(LGUI(KC_Q))
 #define INSPECT_ELEMENT LGUI(RALT(KC_I))
+#define MULT_SEL_UP LGUI(RALT(KC_UP))
+#define MULT_SEL_DN LGUI(RALT(KC_DOWN))
 
 // Pane splitting Mac using Magnet
 #define HALF_LT LCTL(RALT(KC_LEFT))
@@ -48,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     GRAVE_ESC, _______, _______,   _______, _______,  _______,                            _______, _______, _______, KC_MINS, KC_EQL, KC_BSPC,
+     GRAVE_ESC, _______, _______,   _______, _______,  _______,                            MULT_SEL_UP, MULT_SEL_DN, _______, KC_MINS, KC_EQL, KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TILDE,   KC_MS_BTN1, KC_MS_UP, KC_MS_BTN2, _______,    _______,                     CODE_UP, CODE_DOWN, INSPECT_ELEMENT, _______,  _______,  _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
