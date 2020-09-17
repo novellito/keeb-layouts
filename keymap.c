@@ -10,6 +10,8 @@ extern keymap_config_t keymap_config;
 // Layer 1 - easy access
 #define TEXT_LEFT RALT(KC_LEFT)
 #define TEXT_RIGHT RALT(KC_RIGHT)
+#define TEXT_START LGUI(KC_LEFT)
+#define TEXT_END LGUI(KC_RIGHT)
 #define TERMINAL LCTL(KC_GRV)
 
 // Layer 2 - vscode
@@ -88,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TILDE,   KC_MS_BTN1, KC_MS_UP, KC_MS_BTN2, _______,  TERMINAL,                         _______, KC_PGDOWN, KC_PGUP, _______,  _______,  _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT,  KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, TD(MEDIA),_______,                        KC_LEFT, KC_DOWN,   KC_UP,   KC_RIGHT,  _______, KC_ENTER,
+     KC_LSFT,  KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, TD(MEDIA), FAT_ARROW,                   KC_LEFT, KC_DOWN,  KC_UP,   KC_RIGHT,  _______, KC_ENTER,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL,  _______,  _______,  KC_VOLD,  KC_MUTE,  KC_VOLU,  FAT_ARROW,          _______, TEXT_LEFT, TEXT_RIGHT, _______, _______, _______, _______,
+     KC_LCTL,  _______,  _______,  KC_VOLD,  KC_MUTE,  KC_VOLU,  _______,          _______, TEXT_LEFT, TEXT_RIGHT, TEXT_START, TEXT_END, CODE_COMMENT, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, KC_SPC, KC_SPC,                    KC_SPC,  KC_SPC, KC_LALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -100,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______,   _______, _______,  _______,                            MULT_SEL_UP, MULT_SEL_DN, INSPECT_ELEMENT, _______, _______, _______,
+     KC_CAPS, _______, _______,   _______, _______,  _______,                            MULT_SEL_UP, MULT_SEL_DN, INSPECT_ELEMENT, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______,                            _______,  CODE_DOWN, CODE_UP, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -130,12 +132,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
-      }
+      }  
       return false;
       break;
     case FAT_ARROW:
       if (record->event.pressed) {
-       SEND_STRING("=>");
+       SEND_STRING("=> {");
       }
       return false;
       break;
